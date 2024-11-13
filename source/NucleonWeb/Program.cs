@@ -30,11 +30,16 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
-var chromiumProcess = Process.Start(Chromium.Path, "http://localhost:5281/");
+var port = 5000;
+#if DEBUG
+port = 5281;
+#endif
+
+var chromiumProcess = Process.Start(Chromium.Path, $"http://localhost:{port}/");
 
 app.Run();
 
-// If you've reached here, the web server crashed. Terminate the browser.
+// If you've reached here, the web server died. Terminate the browser, if it's still open.
 if (!chromiumProcess.HasExited)
 {
     chromiumProcess.Kill(true);
