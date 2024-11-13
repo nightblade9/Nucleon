@@ -35,7 +35,9 @@ var port = 5000;
 port = 5281;
 #endif
 
-var chromiumProcess = Process.Start(Chromium.Path, $"http://localhost:{port}/");
+var appUrl = $"http://localhost:{port}/";
+
+var chromiumProcess = Process.Start(Chromium.Path, appUrl);
 
 app.Run();
 
