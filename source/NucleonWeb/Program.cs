@@ -1,4 +1,10 @@
+using System.Diagnostics;
 using NucleonWeb.Components;
+
+if (Chromium.Path == null)
+{
+    throw new InvalidOperationException("Looks like Chromium isn't included for your platform. Sorry!");
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,4 +30,12 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
+var chromiumProcess = Process.Start(Chromium.Path, "http://localhost:5281/");
+
 app.Run();
+
+// If you've reached here, the web server crashed. Terminate the browser.
+if (!chromiumProcess.HasExited)
+{
+    chromiumProcess.Kill(true);
+}
