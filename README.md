@@ -1,6 +1,6 @@
 # Nucleon
 
-:warning: Nucleon is still a proof-of-concept, and is not production ready! :warning:
+:warning: Nucleon is a proof-of-concept,with many issues! Use [https://github.com/DotNetExtension/BlazorDesktop](DotNetExtension/BlazorDesktop) instead! :warning:
 
 Build a cross-platform PC app or game with .NET technologies. Inspired by Electron.NET and friends.
 
